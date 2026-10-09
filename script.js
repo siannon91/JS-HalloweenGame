@@ -5,6 +5,8 @@ const monstersContainer = document.getElementById('monsters-container');
 const remainingDisplay = document.getElementById('remaining')
 const musicBtn = document.getElementById('music-btn');
 const bgMusic = document.getElementById('bg-music');
+const gameOverScreen = document.getElementById('game-over');
+const restartBtn = document.getElementById('restart-btn');
 
 let positionX = 100;
 let positionY = 100;
@@ -17,6 +19,7 @@ let remaining = totalCandies;
 let isPlaying = false;
 let candies = [];
 let monsters = [];
+let gameInterval = null;
 
 const candyTypes = ['🍬', '🍫', '🍭', '🧁', '🍩'];
 const monsterTypes = ['👻', '💀', '🧟‍♂️', '🦇', '🧌', '🧛', '🕷️'];
@@ -109,6 +112,10 @@ function checkCollisions() {
             remaining--;
             scoreDisplay.textContent = score;
             remainingDisplay.textContent = remaining;
+
+            if (remaining === 0) {
+                triggerWin();
+            }
         }
     });
 }
@@ -141,6 +148,10 @@ window.addEventListener('keydown', (e) => {
     })
 
 window.addEventListener('click', (e) => {
+
+    if (e.target.closest('#game-over'))
+        return;
+
     positionX = e.clientX - (size / 2);
     positionY = e.clientY - (size / 2);
 
@@ -215,11 +226,31 @@ function moveMonsters() {
         }
 
         monster.style.left = currentX + 'px';
-        monster.style.top = currentY + 'p';
+        monster.style.top = currentY + 'px';
     });
 
     checkDanger();
 
 }
 
-setInterval(moveMonsters, 50);
+
+function startGame() {
+    setupBoard();
+    positionX = 100;
+    positionY = 100;
+    updatePosition();
+
+    gameOverScreen.style.display = 'none';
+
+    if (gameInterval) clearInterval(gameInterval);
+    gameInterval = setInterval(moveMonsters, 50);
+}
+
+function triggerWin() {
+    clearInterval(gameInterval);
+    gameOverScreen.style.display = 'flex';
+}
+
+if (restartBtn) restartBtn.addEventListener('click', startGame);
+
+startGame();
