@@ -59,6 +59,7 @@ body {
     height: 30px;
     border-radius: 50%;
     display: flex;
-    justify-items: center;
+    align-content: center;
     justify-content: center;
+    padding-top: 3px;
 }

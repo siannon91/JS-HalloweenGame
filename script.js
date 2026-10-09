@@ -57,6 +57,9 @@ function setupBoard() {
         monster.style.left = x + 'px';
         monster.style.top = y + 'px';
 
+        monster.velocityX = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 2) + 1.5);
+        monster.velocityY = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 2) + 1.5);
+
         monstersContainer.appendChild(monster);
         monsters.push(monster);
     }
@@ -188,3 +191,25 @@ musicBtn.addEventListener('click', (e) => {
         isPlaying = true;
     }
 })
+
+
+function moveMonsters() {
+    const maxX = window.innerWidth - 50;
+    const maxY = window.innerHeight - 50;
+
+    monsters.forEach(monster => {
+        let currentX = parseFloat(monster.style.left);
+        let currentY = parseFloat(monster.style.top);
+
+        currentX += monster.velocityX;
+        currentY += monster.velocityY;
+
+        monster.style.left = currentX + 'px';
+        monster.style.top = currentY + 'p';
+    });
+
+    checkDanger();
+
+}
+
+setInterval(moveMonsters, 30);
