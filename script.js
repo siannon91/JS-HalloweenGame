@@ -15,6 +15,11 @@ function clampPosition() {
     if (positionY > maxY) positionY = maxY;
 }
 
+function updatePosition() {
+    pumpkin.style.left = positionX + 'px';
+    pumpkin.style.top = positionY + 'px';
+}
+
 window.addEventListener('keydown', (e) => {
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault();
@@ -39,5 +44,14 @@ window.addEventListener('keydown', (e) => {
     }
 
     clampPosition();
+    updatePosition();
     })
 
+window.addEventListener('click', (e) => {
+    positionX = e.clientX - (size / 2);
+    positionY = e.clientY - (size / 2);
+
+    clampPosition();
+    updatePosition();
+
+})
