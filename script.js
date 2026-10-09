@@ -204,6 +204,14 @@ function moveMonsters() {
         currentX += monster.velocityX;
         currentY += monster.velocityY;
 
+        if (currentX <= 0 || currentX >= maxX) {
+            monster.velocityX *= -1;
+        }
+
+        if (currentY <= 0 || currentY >= maxY) {
+            monster.velocityY *= -1;
+        }
+
         monster.style.left = currentX + 'px';
         monster.style.top = currentY + 'p';
     });
