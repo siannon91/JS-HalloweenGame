@@ -2,6 +2,7 @@ const pumpkin = document.getElementById('pumpkin');
 const scoreDisplay = document.getElementById('score');
 const candiesContainer = document.getElementById('candies-container');
 const monstersContainer = document.getElementById('monsters-container');
+const remainingDisplay = document.getElementById('remaining')
 
 let positionX = 100;
 let positionY = 100;
@@ -10,6 +11,7 @@ const size = 60;
 let score = 0;
 let totalCandies = 12;
 let totalMonsters = 8;
+let remaining = totalCandies;
 
 let candies = [];
 let monsters = [];
@@ -57,7 +59,7 @@ function setupBoard() {
         monsters.push(monster);
     }
 
-
+    remainingDisplay.textContent = remaining;
 }
 
 setupBoard();
@@ -99,7 +101,9 @@ function checkCollisions() {
         if(diffX < 35 && diffY < 35) {
             candy.style.display = 'none';
             score++;
+            remaining--;
             scoreDisplay.textContent = score;
+            remainingDisplay.textContent = remaining;
         }
     });
 }
