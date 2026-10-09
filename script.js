@@ -1,14 +1,51 @@
 const pumpkin = document.getElementById('pumpkin');
-const candies = document.querySelectorAll('.candy');
 const scoreDisplay = document.getElementById('score');
-const monsters = document.querySelectorAll('.monster');
+//const monsters = document.querySelectorAll('.monster');
+const candiesContainer = document.getElementById('candies-container');
+const monstersContainer = document.getElementById('monsters-container');
 
 let positionX = 100;
 let positionY = 100;
 const step = 35;
 const size = 60;
 let score = 0;
+let totalCandies = 12;
+let totalMonsters = 8;
 
+let candies = [];
+let monsters = [];
+
+const candyTypes = ['🍬', '🍫', '🍭', '🧁', '🍩'];
+const monsterTypes = ['👻', '💀', '🧟‍♂️', '🦇'];
+
+
+function setupBoard() {
+    candiesContainer.innerHTML = '';
+    monstersContainer.innerHTML = '';
+    candies = [];
+    monsters = [];
+
+    const maxX = window.innerWidth - 80;
+    const maxY = window.innerHeight - 80;
+
+    for (let i = 0; i < totalCandies; i++) {
+        const candy = document.createElement('div');
+        candy.className = 'candy';
+        candy.textContent = candyTypes[Math.floor(Math.random() * candyTypes.lenght)];
+
+        const x = Math.floor(Math.random() * (maxX - 100)) + 100;
+        const y = Math.floor(Math.random() * (maxY - 100)) + 100;
+
+        candy.style.left = x + 'px';
+        candy.style.top = y + 'px';
+
+        candiesContainer.appendChild(candy);
+        candies.push(candy);
+
+}
+}
+
+setupBoard();
 updatePosition();
 
 function clampPosition() {
