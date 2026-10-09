@@ -1,9 +1,12 @@
 const pumpkin = document.getElementById('pumpkin');
+const candies = document.querySelectorAll('.candy');
 
 let positionX = 100;
 let positionY = 100;
 const step = 35;
 const size = 60;
+
+updatePosition();
 
 function clampPosition() {
     const maxX = window.innerWidth - size;
@@ -18,6 +21,17 @@ function clampPosition() {
 function updatePosition() {
     pumpkin.style.left = positionX + 'px';
     pumpkin.style.top = positionY + 'px';
+
+    checkCollisions();
+}
+
+function checkCollisions() {
+    candies.forEach(candy => {
+        if (candy.style.display === 'none') return;
+
+        const pumpkinCenterX = positionX + (size / 2);
+        const pumpkinCenterY = positionY + (size / 2);
+    })
 }
 
 window.addEventListener('keydown', (e) => {
