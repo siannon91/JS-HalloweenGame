@@ -10,12 +10,23 @@ body {
 }
 
 #pumpkin {
-    font-size: 20px;
+    font-size: 50px;
     position: absolute;
-
+    z-index: 5;
 }
 
 .candy {
-    font-size: 15px;
+    font-size: 35px;
     position: absolute;
+}
+
+#score-board {
+    position: fixed;
+    margin: 20px;
+    z-index: 10;
+    font-size: 40px;
+    color: #ffe600;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid #ffe600;
+    border-radius: 2px;
 }
