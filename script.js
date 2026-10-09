@@ -86,3 +86,9 @@ window.addEventListener('click', (e) => {
     updatePosition();
 
 })
+
+
+window.addEventListener('resize', () => {
+    clampPosition();
+    updatePosition();
+})

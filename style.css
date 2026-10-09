@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "jolly";
+    src: url(./font/JollyLodger-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +12,11 @@
 body {
     width: 100vw;
     height: 100vh;
+    background-image: url('./image/luogo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "jolly";
+    
 }
 
 #pumpkin {
@@ -18,6 +28,7 @@ body {
 .candy {
     font-size: 35px;
     position: absolute;
+    z-index: 2;
 }
 
 #score-board {
@@ -29,4 +40,11 @@ body {
     background: rgba(0, 0, 0, 0.75);
     border: 2px solid #ffe600;
     border-radius: 2px;
+    padding: 12px 20px;
+}
+
+.monster {
+    position: absolute;
+    font-size: 45px;
+    z-index: 3;
 }
