@@ -1,6 +1,7 @@
 const pumpkin = document.getElementById('pumpkin');
 const candies = document.querySelectorAll('.candy');
 const scoreDisplay = document.getElementById('score');
+const monsters = document.querySelectorAll('.monster');
 
 let positionX = 100;
 let positionY = 100;
@@ -25,6 +26,7 @@ function updatePosition() {
     pumpkin.style.top = positionY + 'px';
 
     checkCollisions();
+    checkDanger();
 }
 
 function checkCollisions() {
@@ -44,9 +46,8 @@ function checkCollisions() {
 
         if(diffX < 35 && diffY < 35) {
             candy.style.display = 'none';
-
-        score++;
-        scoreDisplay.textContent = score;
+            score++;
+            scoreDisplay.textContent = score;
         }
     });
 }
@@ -92,3 +93,23 @@ window.addEventListener('resize', () => {
     clampPosition();
     updatePosition();
 })
+
+function checkDanger() {
+    monsters.forEach(monster => {
+        const monsterX = parseFloat(monster.style.left);
+        const monsterY = parseFloat(monster.style.top);
+
+
+        if (Math.abs(positionX - monsterX) < 40 && Math.abs(positionY - monsterY) < 40) {
+            if (score > 0) {
+                score--;
+                scoreDisplay.textContent = score;
+            }
+    
+        positionX = 100;
+        positionY = 100;
+        updatePosition();
+        }
+
+    })
+}
