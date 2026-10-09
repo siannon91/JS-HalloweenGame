@@ -3,6 +3,8 @@ const scoreDisplay = document.getElementById('score');
 const candiesContainer = document.getElementById('candies-container');
 const monstersContainer = document.getElementById('monsters-container');
 const remainingDisplay = document.getElementById('remaining')
+const musicBtn = document.getElementById('music-btn');
+const bgMusic = document.getElementById('bg-music');
 
 let positionX = 100;
 let positionY = 100;
@@ -12,7 +14,7 @@ let score = 0;
 let totalCandies = 12;
 let totalMonsters = 8;
 let remaining = totalCandies;
-
+let isPlaying = false;
 let candies = [];
 let monsters = [];
 
@@ -169,3 +171,20 @@ function checkDanger() {
 
     })
 }
+
+bgMusic.volume = 0.3;
+
+musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (isPlaying) {
+        bgMusic.pause();
+        musicBtn.textContent = '🔇';
+        isPlaying = false;
+    }
+    else {
+        bgMusic.play();
+        musicBtn.textContent = '🔊';
+        isPlaying = true;
+    }
+})

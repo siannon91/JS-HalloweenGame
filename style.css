@@ -41,10 +41,24 @@ body {
     border: 2px solid #ffe600;
     border-radius: 2px;
     padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .monster {
     position: absolute;
-    font-size: 45px;
+    font-size: 65px;
     z-index: 3;
+}
+
+#music-btn {
+    background: #ffe600;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
 }
