@@ -1,10 +1,12 @@
 const pumpkin = document.getElementById('pumpkin');
 const candies = document.querySelectorAll('.candy');
+const scoreDisplay = document.getElementById('score');
 
 let positionX = 100;
 let positionY = 100;
 const step = 35;
 const size = 60;
+let score = 0;
 
 updatePosition();
 
@@ -42,10 +44,11 @@ function checkCollisions() {
 
         if(diffX < 35 && diffY < 35) {
             candy.style.display = 'none';
+
+        score++;
+        scoreDisplay.textContent = score;
         }
-
-
-    })
+    });
 }
 
 window.addEventListener('keydown', (e) => {
