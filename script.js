@@ -27,10 +27,18 @@ function updatePosition() {
 
 function checkCollisions() {
     candies.forEach(candy => {
-        if (candy.style.display === 'none') return;
+        
 
-        const pumpkinCenterX = positionX + (size / 2);
-        const pumpkinCenterY = positionY + (size / 2);
+
+
+        const candyX = parseFloat(candy.style.left);
+        const candyY = parseFloat(candy.style.top);
+
+        if (Math.abs(positionX - candyX) < 40 && Math.abs(positionY - candyY) < 40) {
+            candy.style.display === 'none';
+        }
+
+
     })
 }
 
