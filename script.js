@@ -1,6 +1,5 @@
 const pumpkin = document.getElementById('pumpkin');
 const scoreDisplay = document.getElementById('score');
-//const monsters = document.querySelectorAll('.monster');
 const candiesContainer = document.getElementById('candies-container');
 const monstersContainer = document.getElementById('monsters-container');
 
@@ -31,7 +30,7 @@ function setupBoard() {
     for (let i = 0; i < totalCandies; i++) {
         const candy = document.createElement('div');
         candy.className = 'candy';
-        candy.textContent = candyTypes[Math.floor(Math.random() * candyTypes.lenght)];
+        candy.textContent = candyTypes[Math.floor(Math.random() * candyTypes.length)];
 
         const x = Math.floor(Math.random() * (maxX - 100)) + 100;
         const y = Math.floor(Math.random() * (maxY - 100)) + 100;
@@ -41,8 +40,24 @@ function setupBoard() {
 
         candiesContainer.appendChild(candy);
         candies.push(candy);
+    }
 
-}
+        for (let i = 0; i < totalMonsters; i++) {
+        const monster = document.createElement('div');
+        monster.className = 'monster';
+        monster.textContent = monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
+
+        const x = Math.floor(Math.random() * (maxX - 150)) + 150;
+        const y = Math.floor(Math.random() * (maxY - 150)) + 150;
+
+        monster.style.left = x + 'px';
+        monster.style.top = y + 'px';
+
+        monstersContainer.appendChild(monster);
+        monsters.push(monster);
+    }
+
+
 }
 
 setupBoard();
