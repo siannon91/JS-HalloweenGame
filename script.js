@@ -11,15 +11,15 @@ let positionY = 100;
 const step = 35;
 const size = 60;
 let score = 0;
-let totalCandies = 12;
-let totalMonsters = 8;
+let totalCandies = 20;
+let totalMonsters = 14;
 let remaining = totalCandies;
 let isPlaying = false;
 let candies = [];
 let monsters = [];
 
 const candyTypes = ['🍬', '🍫', '🍭', '🧁', '🍩'];
-const monsterTypes = ['👻', '💀', '🧟‍♂️', '🦇'];
+const monsterTypes = ['👻', '💀', '🧟‍♂️', '🦇', '🧌', '🧛', '🕷️'];
 
 
 function setupBoard() {
@@ -206,10 +206,12 @@ function moveMonsters() {
 
         if (currentX <= 0 || currentX >= maxX) {
             monster.velocityX *= -1;
+            monster.velocityY += (Math.random() - 0.5);
         }
 
         if (currentY <= 0 || currentY >= maxY) {
             monster.velocityY *= -1;
+            monster.velocityX += (Math.random() - 0.5);
         }
 
         monster.style.left = currentX + 'px';
@@ -220,4 +222,4 @@ function moveMonsters() {
 
 }
 
-setInterval(moveMonsters, 30);
+setInterval(moveMonsters, 50);
